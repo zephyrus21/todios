@@ -11,7 +11,28 @@ struct NoListView: View {
 	@State var animate: Bool = false
 	
 	var body: some View {
-		Text("Hello, Bitch")
+		ScrollView {
+			VStack(spacing: 20) {
+				Text("There are no items!!")
+					.bold()
+					.font(.title)
+				
+				NavigationLink(destination: AddView(), label: {
+					Text("Add Something")
+						.bold()
+						.foregroundColor(.white)
+						.frame(height: 50)
+						.frame(maxWidth: .infinity)
+				})
+				.background(animate ? Color.orange : Color.accentColor)
+				.cornerRadius(10)
+				.padding(.horizontal, animate ? 30 : 50)
+				.shadow(color: animate ? Color.orange.opacity(0.5) : Color.accentColor.opacity(0.5), radius: 15, x: 0, y: animate ? 20 : 40)
+			}
+			.multilineTextAlignment(.center)
+			.padding()
+			.onAppear(perform: addAnimation)
+		}.frame(maxWidth: .infinity, maxHeight: .infinity)
 	}
 	
 	func addAnimation() {
