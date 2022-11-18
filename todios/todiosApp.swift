@@ -14,7 +14,7 @@ struct todiosApp: App {
     var body: some Scene {
         WindowGroup {
 					NavigationView {
-						NoListView()
+						ListView()
 					}
 					.environmentObject(listViewModel)
         }
